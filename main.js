@@ -4,7 +4,8 @@ const spawn = require('cross-spawn');
 const Store = require('electron-store');
 const { app, BrowserWindow, Menu, MenuItem, Tray, dialog } = require('electron');
 
-const iconTemplateUrl = resolve(__dirname, 'assets', 'iconTemplate.png');
+const iconTray = resolve(__dirname, 'assets', 'iconTemplate.png');
+const iconVSCode = resolve(__dirname, 'assets', 'iconVSCode.png');
 const iconVs = resolve(__dirname, 'assets', 'iconVS.png');
 const iconSettings = resolve(__dirname, 'assets', 'iconSettings.png');
 const iconCMD = resolve(__dirname, 'assets', 'iconCMD.png');
@@ -23,7 +24,7 @@ app.on('ready', () => {
 });
 
 function startTray() {
-    appTray = new Tray(iconTemplateUrl);
+    appTray = new Tray(iconTray);
     renderTray();
 }
 
@@ -119,7 +120,7 @@ function renderProjectItem(project) {
             new MenuItem({
                 type: 'normal',
                 label: 'VS Code',
-                icon: iconTemplateUrl,
+                icon: iconVSCode,
                 click: () => {
                     spawn.sync('code', [project.path])
 
@@ -164,7 +165,7 @@ function saveProject(value) {
     const newItem = {
         path: value,
         name: basename(value),
-        icon: hasSomeExtention(value, '.sln') ? iconVs : iconTemplateUrl,
+        icon: hasSomeExtention(value, '.sln') ? iconVs : iconVSCode,
         hasSln
     };
     store.set('project', JSON.stringify([...projects, newItem]));
