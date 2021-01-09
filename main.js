@@ -3,7 +3,6 @@ const fs = require('fs');
 const spawn = require('cross-spawn');
 const Store = require('electron-store');
 const { app, BrowserWindow, Menu, MenuItem, Tray, dialog } = require('electron');
-const { JSON, console } = require('globalthis/implementation');
 
 const iconTemplateUrl = resolve(__dirname, 'assets', 'iconTemplate.png');
 const iconVs = resolve(__dirname, 'assets', 'iconVS.png');
